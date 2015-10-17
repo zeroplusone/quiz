@@ -27,15 +27,15 @@ char smallest_character(char str[],char c)
     /* find the first value which is strictly larger than c */
     if(str[0] > c) {
         ret = str[0];
-    /* continue to travel array */
-    } else {    
-        
+        /* continue to travel array */
+    } else {
+
         int len = strlen(str);
         /* if there is no value larger than c, return '0' */
         if(len == 1)
             return '0';
 
-        /* continue to travel */    
+        /* continue to travel */
         char *substr = (char*)malloc(len);
         memcpy(substr, &str[1], len-1);
         ret = smallest_character(substr, c);
