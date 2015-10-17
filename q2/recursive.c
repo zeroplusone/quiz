@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#define STR_LENGTH 10
+#include <assert.h>
+
 
 /* produce test case */
 int compare(const void* ch1, const void *ch2)
@@ -10,13 +11,13 @@ int compare(const void* ch1, const void *ch2)
     return *(char*)ch1 - *(char*)ch2;
 }
 
-char* createStr(char str[])
+char* createStr(char str[], int len)
 {
     int i;
-    for(i=0; i<STR_LENGTH; ++i) {
+    for(i=0; i<len; ++i) {
         str[i] = 'a' + rand()%26;
     }
-    qsort((void*)str,STR_LENGTH,sizeof(char),compare);
+    qsort((void*)str,len,sizeof(char),compare);
     return str;
 }
 
@@ -39,13 +40,15 @@ char smallest_character(char str[], char c)
     return str[binary_search(0, strlen(str)-1, 0, str, c)];
 }
 
-int main()
+int main(int argc, char* argv[])
 {
-    char str[STR_LENGTH];
+    assert(argc == 2 && "Please input length of array'");
+    int len=atoi(argv[1]);
+    char *str=(char*)malloc(len*sizeof(char));
 
     /* create test case */
     srand(time(NULL));
-    createStr(str);
+    createStr(str,len);
     char c = 'a'+rand()%26;
 
     printf("smallest_character(%s, %c) = %c.\n",str, c, smallest_character(str,c));
