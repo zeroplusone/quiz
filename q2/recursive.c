@@ -11,7 +11,7 @@ int compare(const void* ch1, const void *ch2)
 }
 
 char* createStr(char str[])
-{   
+{
     int i;
     for(i=0; i<STR_LENGTH; ++i) {
         str[i] = 'a' + rand()%26;
@@ -20,11 +20,12 @@ char* createStr(char str[])
     return str;
 }
 
-int binary_search(int L,int R, int mid, char str[], char c) {
-    if(L >= R) 
+int binary_search(int L,int R, int mid, char str[], char c)
+{
+    if(L >= R)
         return str[mid]<=c?0:mid;
-    
-    /* choose the array range by checking whether middle value is larger than c or not */ 
+
+    /* choose the array range by checking whether middle value is larger than c or not */
     mid = (L+R+1)>>1;
     if(str[mid] <= c)
         return binary_search(mid, R, mid, str, c);
@@ -32,7 +33,8 @@ int binary_search(int L,int R, int mid, char str[], char c) {
         return binary_search(L, mid-1, mid, str, c);
 }
 
-char smallest_character(char str[], char c) {
+char smallest_character(char str[], char c)
+{
     /* use binary search to implemet */
     return str[binary_search(0, strlen(str)-1, 0, str, c)];
 }
@@ -45,7 +47,7 @@ int main()
     srand(time(NULL));
     createStr(str);
     char c = 'a'+rand()%26;
-    
+
     printf("smallest_character(%s, %c) = %c.\n",str, c, smallest_character(str,c));
     return 0;
 }

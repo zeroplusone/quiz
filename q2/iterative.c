@@ -11,7 +11,7 @@ int compare(const void* ch1, const void *ch2)
 }
 
 char* createStr(char str[])
-{   
+{
     int i;
     for(i=0; i<STR_LENGTH; ++i) {
         str[i] = 'a' + rand()%26;
@@ -20,12 +20,13 @@ char* createStr(char str[])
     return str;
 }
 
-char smallest_character(char str[], char c) {
+char smallest_character(char str[], char c)
+{
     /* use binary search to implemet */
 
     int mid;
     int L=0, R=strlen(str)-1;
-    
+
     do {
         mid=(L+R+1)>>1;
         if(str[mid]<=c)
@@ -45,7 +46,7 @@ int main()
     srand(time(NULL));
     createStr(str);
     char c = 'a'+rand()%26;
-    
+
     printf("smallest_character(%s, %c) = %c.\n",str, c, smallest_character(str,c));
     return 0;
 }
