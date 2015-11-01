@@ -27,7 +27,7 @@ void createList(node* head, int len)
         tmp = NULL;
     }
 
-    int cycle = rand() % len;
+    int cycle = rand() % (len + 1);
     /* cycle = 0 means there is no cycle */
 
     if(cycle == 0)
